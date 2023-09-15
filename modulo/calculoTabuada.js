@@ -1,54 +1,70 @@
 /**********************************************************************************************************************************
 * Objetivo: Arquivo de funções para calcular uma tabuada                                                                          *
-* Data: 01/09/23                                                                                                                  *
+* Data: 15/09/23                                                                                                                  *
 * Autor: Igor Araujo                                                                                                              *
 * Versão: 1.0                                                                                                                     * 
 ***********************************************************************************************************************************/
 
-// Função para calcular uma tabuada
-const calcularTabuada = function(valorTabuada, contadorInicial, contadorFinal){
-    // Entrada de dados que chegam pelos argumentos
-    let tabuada = String (valorTabuada).replace(',','.')
-    let contInicial = String (contadorInicial).replace(',','.')
-    let contFinal = String (contadorFinal).replace(',','.')
-    
+//Função para calcular tabuada
+const calcularTabuada = function (valorTabuada, contadorInicial,contadorFinal){
+
+    //Entrada de dados que chegam pelos argumentos
+    let tabuada = String(valorTabuada).replace(',','.')
+    let contInicial = String(contadorInicial).replace(',','.')
+    let contFinal = String(contadorFinal).replace(',','.')
+
     let resultado
     let status = false
-    
 
-    // let valorAuxiliar
+    //Validação para organizar os valores (menor e maior)
+    if(Number(contFinal) < Number(contInicial)){
 
-    // Validação para organizar os valores (menor e maior)
-    if(contFinal < contInicial){
+        // const valorAuxiliar = contInicial
+        // contInicial = contFinal
+        // contFinal = valorAuxiliar
+
         contFinal = contadorInicial
         contInicial = contadorFinal
+        
     }
 
-    if (tabuada == "" || contInicial == "" || contFinal == "")
-        console.log("ERRO: É obrigatório a entrada de todos os valores")
-        else if(isNaN(tabuada || isNaN(contInicial) || isNaN(contFinal)))
-        console.log("ERRO: É obrigatório a entrada somente de números")
-        else{
-            // Converte as variaveis em numeros
-            contInicial = Number(contInicial)
-            contFinal = Number(contFinal)
-            tabuada = Number(tabuada)
+    if(tabuada == '' || contFinal == '' || contInicial == '')
+        console.log('ERRO: é obrigatorio a entrada de todos os valores')
+    else if(isNaN(tabuada)|| isNaN(contFinal) || isNaN(contInicial))
+        console.log('ERRO: é obrigatorio a entrada somente de números')
+    else{
 
-            //Exemplo usando o while //
-            while(contInicial <= contFinal){
-                resultado = tabuada * contInicial
-                console.log(tabuada + 'x' + contInicial + '=' + resultado)
+        //Converte as variaveis em número
+        contInicial = Number(contInicial)
+        contFinal = Number(contFinal)
+        tabuada = Number(tabuada)
+
+
+        // //Exemplo usando o while
+        // while(contInicial <= contFinal){
+        //     resultado = tabuada * contInicial
+        //     console.log(tabuada + 'x' + contInicial + '=' + resultado)
+        //     //ou  console.log(`${tabuada} x ${contInicial} = ${resultado}`)
+
+        //     //contInicial = contInicial + 1
+        //     // contInicial+=1
+        //     contInicial++
                 
-                contInicial++;
+        //     status = true
+        // }
 
-                status = true
-            }
+        //Exemplo usando o for
+        for(; contInicial <= contFinal; contInicial++){ //Criaçao da variavel, definir ate quantas vezes o const vai acontecer e adcionando o ++
+            resultado = tabuada * contInicial
+            console.log(tabuada + 'x' + contInicial + '=' + resultado)
+            status = true
         }
+    }
+    return status
 
-        return status
-        
-        
+} 
+
+ //Chamando a função -- Import do arquivo
+ module.exports = {
+    calcularTabuada       
 }
-
-
-    console.log(calcularTabuada(7,0,10))
